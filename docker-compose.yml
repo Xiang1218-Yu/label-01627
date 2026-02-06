@@ -1,0 +1,13 @@
+version: '3.8'
+
+services:
+  frontend-admin:
+    build:
+      context: ./frontend-admin
+      dockerfile: Dockerfile
+    container_name: qrcode-generator-frontend
+    ports:
+      - "8081:8081"
+    restart: unless-stopped
+    environment:
+      - TZ=Asia/Shanghai
