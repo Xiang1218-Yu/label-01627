@@ -1,8 +1,8 @@
 # =============================================
 # 阶段一：构建 (Build Stage)
-# 使用 Node 官方跨平台镜像 (支持 AMD64 + ARM64)
+# Angular 8 需要 Node 12.x
 # =============================================
-FROM node:18-alpine AS builder
+FROM node:12-alpine AS builder
 
 # 设置工作目录
 WORKDIR /app

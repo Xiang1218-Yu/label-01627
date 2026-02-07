@@ -1,0 +1,53 @@
+<div class="display-view">
+  <!-- 顶部装饰条 -->
+  <div class="display-view__header">
+    <div class="header-inner">
+      <i nz-icon nzType="message" nzTheme="fill" class="header-icon"></i>
+      <span>内容展示</span>
+    </div>
+  </div>
+
+  <!-- 内容卡片 -->
+  <main class="display-view__main">
+    <!-- 有内容时展示 -->
+    <div *ngIf="displayText" class="content-card">
+      <div class="content-card__badge">
+        <i nz-icon nzType="file-text" nzTheme="outline"></i>
+        <span>扫码内容</span>
+      </div>
+
+      <div class="content-card__body">
+        <p
+          *ngFor="let line of textLines; let i = index"
+          class="content-line"
+          [class.empty-line]="!line.trim()"
+        >
+          {{ line || '\u00A0' }}
+        </p>
+      </div>
+
+      <div class="content-card__footer">
+        <div class="timestamp">
+          <i nz-icon nzType="clock-circle" nzTheme="outline"></i>
+          <span>{{ currentTime }}</span>
+        </div>
+        <button nz-button nzType="primary" nzSize="small" nzGhost nzShape="round" (click)="copyText()">
+          <i nz-icon nzType="copy" nzTheme="outline"></i>
+          复制文字
+        </button>
+      </div>
+    </div>
+
+    <!-- 无内容时 -->
+    <div *ngIf="!displayText" class="empty-state">
+      <i nz-icon nzType="warning" nzTheme="fill" class="empty-state__icon"></i>
+      <h3>暂无展示内容</h3>
+      <p>请从电脑端生成二维码后，使用手机扫码访问</p>
+    </div>
+  </main>
+
+  <!-- 底部信息 -->
+  <footer class="display-view__footer">
+    <p>由二维码生成器提供 · 纯前端实现</p>
+  </footer>
+</div>

@@ -108,6 +108,10 @@ a {
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
+
+    i {
+      font-size: var(--font-size-lg);
+    }
   }
 
   &__subtitle {

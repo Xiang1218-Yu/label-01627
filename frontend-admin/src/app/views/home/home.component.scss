@@ -1,0 +1,44 @@
+.home-view {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: var(--bg-page);
+
+  &__content {
+    flex: 1;
+    padding-top: var(--spacing-xl);
+    padding-bottom: var(--spacing-xl);
+
+    ::ng-deep {
+      .ant-row {
+        align-items: stretch;
+      }
+
+      nz-col,
+      .ant-col {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: var(--spacing-lg);
+      }
+
+      .app-card {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+
+  &__network {
+    margin-top: var(--spacing-xs);
+  }
+
+  &__footer {
+    text-align: center;
+    padding: var(--spacing-lg);
+    color: var(--text-secondary);
+    font-size: var(--font-size-sm);
+    border-top: 1px solid var(--border-color);
+    background: var(--bg-card);
+  }
+}
