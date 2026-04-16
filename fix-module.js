@@ -1,4 +1,7 @@
-import { NgModule } from '@angular/core';
+const fs = require('fs');
+const path = require('path');
+
+const content = `import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule, Routes } from '@angular/router';
@@ -49,3 +52,8 @@ const routes: Routes = [
   ]
 })
 export class HomeModule {}
+`;
+
+const filePath = path.join(__dirname, 'frontend-admin/src/app/views/home/home.module.ts');
+fs.writeFileSync(filePath, content, 'utf8');
+console.log('File written successfully to:', filePath);

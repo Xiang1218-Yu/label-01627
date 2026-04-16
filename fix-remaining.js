@@ -1,4 +1,18 @@
-import { Component, OnInit, ViewContainerRef } from '@angular/core';
+const fs = require('fs');
+const path = require('path');
+
+// 1. 修复 TranslatePipe 中的方法名
+const translatePipePath = path.join(__dirname, 'frontend-admin/src/app/pipes/translate.pipe.ts');
+let translatePipeContent = fs.readFileSync(translatePipePath, 'utf8');
+translatePipeContent = translatePipeContent.replace(
+  'return this.i18nService.getTranslation(key, params);',
+  'return this.i18nService.instant(key, params);'
+);
+fs.writeFileSync(translatePipePath, translatePipeContent, 'utf8');
+console.log('Fixed: translate.pipe.ts');
+
+// 2. 完全重写 app.component.ts
+const appComponentContent = `import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
 import { Title } from '@angular/platform-browser';
 import { filter, map, mergeMap } from 'rxjs/operators';
@@ -7,7 +21,7 @@ import { SettingsPanelComponent } from './components/settings-panel/settings-pan
 
 @Component({
   selector: 'app-root',
-  template: `
+  template: \`
     <div class="app-container">
       <button
         class="settings-float-btn"
@@ -22,8 +36,8 @@ import { SettingsPanelComponent } from './components/settings-panel/settings-pan
       </button>
       <router-outlet></router-outlet>
     </div>
-  `,
-  styles: [`
+  \`,
+  styles: [\`
     :host {
       display: block;
       min-height: 100vh;
@@ -43,15 +57,14 @@ import { SettingsPanelComponent } from './components/settings-panel/settings-pan
       height: 48px;
       box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
     }
-  `]
+  \`]
 })
 export class AppComponent implements OnInit {
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private titleService: Title,
-    private drawerService: NzDrawerService,
-    private viewContainerRef: ViewContainerRef
+    private drawerService: NzDrawerService
   ) {}
 
   ngOnInit(): void {
@@ -72,10 +85,16 @@ export class AppComponent implements OnInit {
     this.drawerService.create({
       nzTitle: null,
       nzContent: SettingsPanelComponent,
-      nzViewContainerRef: this.viewContainerRef,
       nzPlacement: 'right',
       nzWidth: 360,
       nzClosable: false
     });
   }
 }
+`;
+
+const appComponentPath = path.join(__dirname, 'frontend-admin/src/app/app.component.ts');
+fs.writeFileSync(appComponentPath, appComponentContent, 'utf8');
+console.log('Fixed: app.component.ts');
+
+console.log('All remaining fixes applied successfully!');

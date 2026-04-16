@@ -1,16 +1,27 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-qr-preview-card',
   templateUrl: './qr-preview-card.component.html',
   styleUrls: ['./qr-preview-card.component.scss']
 })
-export class QrPreviewCardComponent {
+export class QrPreviewCardComponent implements OnChanges {
   @Input() qrDataUrl = '';
   @Input() displayUrl = '';
+  @Input() i18nService: I18nService;
 
   constructor(private message: NzMessageService) {}
+
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.i18nService && this.i18nService) {
+    }
+  }
+
+  getTranslation(key: string, params?: any): string {
+    return this.i18nService ? this.i18nService.instant(key, params) : key;
+  }
 
   handleDownload(): void {
     if (!this.qrDataUrl) { return; }
@@ -22,7 +33,7 @@ export class QrPreviewCardComponent {
     link.click();
     document.body.removeChild(link);
 
-    this.message.success('二维码图片已开始下载');
+    this.message.success(this.getTranslation('qrPreview.downloadSuccess'));
   }
 
   async handleCopy(): Promise<void> {
@@ -30,7 +41,7 @@ export class QrPreviewCardComponent {
 
     try {
       await navigator.clipboard.writeText(this.displayUrl);
-      this.message.success('链接已复制到剪贴板');
+      this.message.success(this.getTranslation('qrPreview.copySuccess'));
     } catch {
       const textarea = document.createElement('textarea');
       textarea.value = this.displayUrl;
@@ -40,7 +51,7 @@ export class QrPreviewCardComponent {
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      this.message.success('链接已复制到剪贴板');
+      this.message.success(this.getTranslation('qrPreview.copySuccess'));
     }
   }
 }

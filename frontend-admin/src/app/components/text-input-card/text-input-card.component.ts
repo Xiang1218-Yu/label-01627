@@ -1,53 +1,109 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { I18nService } from '../../services/i18n.service';
 
+/**
+ * 示例项接口
+ */
 interface ExampleItem {
+  /** 示例标签 */
   label: string;
+  /** 示例文本内容 */
   text: string;
 }
 
+/**
+ * 文本输入卡片组件
+ * 用于输入要生成二维码的文本内容
+ */
 @Component({
   selector: 'app-text-input-card',
   templateUrl: './text-input-card.component.html',
   styleUrls: ['./text-input-card.component.scss']
 })
-export class TextInputCardComponent {
+export class TextInputCardComponent implements OnChanges {
+  /** 输入的文本内容 */
   @Input() text = '';
+  /** 是否正在加载中 */
   @Input() loading = false;
+  /** 国际化服务实例 */
+  @Input() i18nService: I18nService;
+  /** 文本内容变化事件 */
   @Output() textChange = new EventEmitter<string>();
+  /** 生成二维码事件 */
   @Output() generate = new EventEmitter<void>();
 
-  examples: ExampleItem[] = [
-    {
-      label: '公告通知',
-      text: '【重要通知】\n\n尊敬的各位同事：\n\n公司将于2026年2月10日（周二）下午14:00在三楼会议室召开年度总结大会，请各部门负责人准时参加。\n\n请提前准备好部门年度工作总结和新年度计划。\n\n—— 行政部'
-    },
-    {
-      label: '产品介绍',
-      text: '【智能家居控制中心 Pro】\n\n一款革命性的智能家居产品：\n\n✅ 支持语音控制全屋设备\n✅ AI 智能场景推荐\n✅ 兼容 1000+ 品牌设备\n✅ 远程手机 APP 操控\n\n售价：¥599\n官网：www.example.com'
-    },
-    {
-      label: '活动邀请',
-      text: '🎉 邀请函\n\n诚邀您参加「2026春季技术分享会」\n\n📅 时间：2026年3月15日 09:00-17:00\n📍 地点：科技园区 A 座报告厅\n🎯 主题：前端工程化与AI辅助开发\n\n议程亮点：\n• Vue 3 深度实践分享\n• AI Copilot 提效秘籍\n• 微前端架构落地经验\n\n期待您的到来！'
-    }
-  ];
+  /** 快捷示例列表 */
+  examples: ExampleItem[] = [];
 
+  /**
+   * 组件输入属性变化时更新示例列表
+   */
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.i18nService && this.i18nService) {
+      this.updateExamples();
+    }
+  }
+
+  /**
+   * 根据当前语言更新示例列表
+   */
+  private updateExamples(): void {
+    this.examples = [
+      {
+        label: this.i18nService.instant('home.exampleNotice'),
+        text: this.i18nService.instant('home.exampleNoticeText')
+      },
+      {
+        label: this.i18nService.instant('home.exampleProduct'),
+        text: this.i18nService.instant('home.exampleProductText')
+      },
+      {
+        label: this.i18nService.instant('home.exampleInvitation'),
+        text: this.i18nService.instant('home.exampleInvitationText')
+      }
+    ];
+  }
+
+  /**
+   * 文本输入变化处理
+   * @param value 输入的文本值
+   */
   onInput(value: string): void {
     this.textChange.emit(value);
   }
 
+  /**
+   * 生成二维码按钮点击处理
+   */
   onGenerate(): void {
     if (this.text.trim()) {
       this.generate.emit();
     }
   }
 
+  /**
+   * 清空内容按钮点击处理
+   */
   onClear(): void {
     this.text = '';
     this.textChange.emit('');
   }
 
+  /**
+   * 应用快捷示例
+   * @param exampleText 示例文本
+   */
   applyExample(exampleText: string): void {
     this.text = exampleText;
     this.textChange.emit(exampleText);
+  }
+
+  /**
+   * 获取翻译文本
+   * @param key 翻译键
+   * @param params 可选参数
+   */
+  getTranslation(key: string, params?: any): string {
+    return this.i18nService ? this.i18nService.instant(key, params) : key;
   }
 }
