@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzModalService } from 'ng-zorro-antd/modal';
 import * as QRCode from 'qrcode';
 import { buildDisplayUrl, getEncodedUrlLength, QR_MAX_RECOMMENDED_LENGTH } from '../../utils/network';
+import { SettingsComponent } from '../../components/settings/settings.component';
 
 @Component({
   selector: 'app-home',
@@ -16,7 +18,7 @@ export class HomeComponent implements OnInit {
   localIP = '';
   serverPort = 8081;
 
-  constructor(private message: NzMessageService) {}
+  constructor(private message: NzMessageService, private modalService: NzModalService) {}
 
   ngOnInit(): void {
     const currentPort = window.location.port;
@@ -75,5 +77,17 @@ export class HomeComponent implements OnInit {
     if (this.qrDataUrl && this.inputText.trim()) {
       this.generateQrCode();
     }
+  }
+
+  /**
+   * 打开设置弹窗
+   */
+  openSettings(): void {
+    this.modalService.create({
+      nzTitle: '系统设置',
+      nzContent: SettingsComponent,
+      nzFooter: null,
+      nzMaskClosable: true
+    });
   }
 }
