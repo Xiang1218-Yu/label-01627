@@ -1,30 +1,30 @@
 <div class="app-card qr-preview-card">
   <div class="app-card__title">
     <i nz-icon nzType="mobile" nzTheme="outline"></i>
-    <span>二维码预览</span>
+    <span>{{ 'qrPreview.title' | translate }}</span>
   </div>
 
   <!-- 空状态 -->
   <div *ngIf="!qrDataUrl" class="qr-preview-card__empty">
     <i nz-icon nzType="picture" nzTheme="fill" class="empty-icon"></i>
-    <p>输入文字并点击"生成二维码"</p>
-    <p class="sub-text">手机扫描二维码即可在网页中查看文字</p>
+    <p>{{ 'qrPreview.noQrCode' | translate }}</p>
+    <p class="sub-text">{{ 'header.description' | translate }}</p>
   </div>
 
   <!-- 二维码展示 -->
   <div *ngIf="qrDataUrl" class="qr-preview-card__content">
     <div class="qr-image-wrapper">
-      <img [src]="qrDataUrl" alt="二维码" class="qr-image" />
+      <img [src]="qrDataUrl" alt="QR Code" class="qr-image" />
       <div class="scan-hint">
         <i nz-icon nzType="mobile" nzTheme="outline"></i>
-        <span>请用手机扫描</span>
+        <span>{{ 'messages.qrGenerated' | translate }}</span>
       </div>
     </div>
 
     <div class="qr-preview-card__info">
       <nz-alert
         nzType="success"
-        nzMessage="二维码已生成，请确保手机与电脑在同一局域网下"
+        [nzMessage]="'networkInfo.tip' | translate"
         nzShowIcon
         [nzCloseable]="false"
       ></nz-alert>
@@ -33,11 +33,11 @@
     <div class="qr-preview-card__actions">
       <button nz-button nzType="primary" nzGhost (click)="handleDownload()">
         <i nz-icon nzType="download" nzTheme="outline"></i>
-        下载二维码
+        {{ 'qrPreview.download' | translate }}
       </button>
       <button nz-button nzGhost (click)="handleCopy()">
         <i nz-icon nzType="copy" nzTheme="outline"></i>
-        复制链接
+        {{ 'qrPreview.copyLink' | translate }}
       </button>
     </div>
   </div>

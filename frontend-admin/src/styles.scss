@@ -3,15 +3,21 @@
 // ===========================
 
 :root {
+  // 主色调 - 可通过主题服务动态修改
+  --primary-color: #1890ff;
+  --header-gradient-start: #667eea;
+  --header-gradient-end: #764ba2;
+  --card-header-bg: #f0f5ff;
+
   // 主色调
-  --color-primary: #409eff;
-  --color-primary-light: #66b1ff;
-  --color-primary-dark: #3a8ee6;
+  --color-primary: var(--primary-color);
+  --color-primary-light: var(--primary-color);
+  --color-primary-dark: var(--primary-color);
 
   // 背景色
   --bg-page: #f0f2f5;
   --bg-card: #ffffff;
-  --bg-header: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-header: linear-gradient(135deg, var(--header-gradient-start) 0%, var(--header-gradient-end) 100%);
 
   // 文字色
   --text-primary: #303133;

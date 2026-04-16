@@ -1,8 +1,18 @@
 <div class="home-view">
   <!-- 页面头部 -->
   <header class="page-header">
-    <h1 class="page-header__title">二维码生成器</h1>
-    <p class="page-header__desc">输入文字 → 生成二维码 → 手机扫码查看内容</p>
+    <div class="page-header__content">
+      <h1 class="page-header__title">{{ 'header.title' | translate }}</h1>
+      <p class="page-header__desc">{{ 'header.description' | translate }}</p>
+    </div>
+    <button
+      nz-button
+      nzType="text"
+      class="settings-btn"
+      (click)="settingsVisible = true"
+    >
+      <i nz-icon nzType="setting" nzTheme="outline"></i>
+    </button>
   </header>
 
   <!-- 主内容区 -->
@@ -39,6 +49,47 @@
 
   <!-- 页脚 -->
   <footer class="home-view__footer">
-    <p>QR Code Generator &copy; 2026 — 纯前端实现，无需后端服务</p>
+    <p>{{ 'footer.copyright' | translate }}</p>
   </footer>
+
+  <!-- 设置抽屉 -->
+  <nz-drawer
+    [nzVisible]="settingsVisible"
+    [nzTitle]="'settings.language' | translate"
+    [nzPlacement]="'right'"
+    [nzWidth]="320"
+    (nzOnClose)="settingsVisible = false"
+  >
+    <div class="settings-content">
+      <!-- 语言选择 -->
+      <div class="settings-section">
+        <h4 class="settings-section__title">{{ 'settings.language' | translate }}</h4>
+        <div class="language-options">
+          <button
+            *ngFor="let lang of i18nService.supportedLanguages"
+            nz-button
+            [nzType]="i18nService.getCurrentLanguage() === lang.code ? 'primary' : 'default'"
+            class="language-btn"
+            (click)="changeLanguage(lang.code)"
+          >
+            {{ lang.nativeName }}
+          </button>
+        </div>
+      </div>
+
+      <!-- 主题颜色选择 -->
+      <div class="settings-section">
+        <h4 class="settings-section__title">{{ 'settings.themeColor' | translate }}</h4>
+        <div class="color-preset">
+          <div
+            *ngFor="let preset of themeService.presetColors"
+            class="color-option"
+            [class.active]="themeService.getCurrentPrimaryColor() === preset.color"
+            [style.backgroundColor]="preset.color"
+            (click)="changeThemeColor(preset.color)"
+          ></div>
+        </div>
+      </div>
+    </div>
+  </nz-drawer>
 </div>
