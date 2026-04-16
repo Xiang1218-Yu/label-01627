@@ -1,6 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-display',
@@ -16,17 +17,16 @@ export class DisplayComponent implements OnInit, OnDestroy {
 
   constructor(
     private route: ActivatedRoute,
-    private message: NzMessageService
+    private message: NzMessageService,
+    public i18nService: I18nService
   ) {}
 
   ngOnInit(): void {
-    // 从 URL query 参数中解析文本
     const text = this.route.snapshot.queryParamMap.get('text');
     if (text) {
       this.displayText = text;
       this.textLines = text.split('\n');
     } else {
-      // 兜底：Hash 模式下从 window.location.hash 中手动解析 query 参数
       const hash = window.location.hash || '';
       const queryIndex = hash.indexOf('?');
       if (queryIndex !== -1) {
@@ -53,7 +53,10 @@ export class DisplayComponent implements OnInit, OnDestroy {
 
   private updateTime(): void {
     const now = new Date();
-    this.currentTime = now.toLocaleString('zh-CN', {
+    const locale = this.i18nService.getCurrentLanguage() === 'zh' ? 'zh-CN' :
+                   this.i18nService.getCurrentLanguage() === 'ja' ? 'ja-JP' :
+                   this.i18nService.getCurrentLanguage() === 'ko' ? 'ko-KR' : 'en-US';
+    this.currentTime = now.toLocaleString(locale, {
       year: 'numeric',
       month: '2-digit',
       day: '2-digit',
@@ -66,7 +69,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
   async copyText(): Promise<void> {
     try {
       await navigator.clipboard.writeText(this.displayText);
-      this.message.success('文字已复制');
+      this.message.success(this.i18nService.translate('common.copied'));
     } catch {
       const textarea = document.createElement('textarea');
       textarea.value = this.displayText;
@@ -76,7 +79,7 @@ export class DisplayComponent implements OnInit, OnDestroy {
       textarea.select();
       document.execCommand('copy');
       document.body.removeChild(textarea);
-      this.message.success('文字已复制');
+      this.message.success(this.i18nService.translate('common.copied'));
     }
   }
 }

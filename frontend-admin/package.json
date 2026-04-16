@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "ng serve --host 0.0.0.0 --port 5174",
+    "start": "ng serve --host 0.0.0.0 --port 5175",
     "build": "ng build --prod",
     "lint": "ng lint"
   },
@@ -31,6 +31,7 @@
     "@angular/language-service": "~8.2.14",
     "@types/node": "~12.11.1",
     "@types/qrcode": "^1.4.2",
+    "chokidar": "^5.0.0",
     "typescript": "~3.5.3"
   }
 }
