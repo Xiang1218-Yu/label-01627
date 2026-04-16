@@ -1,0 +1,101 @@
+{
+  "common": {
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "save": "Save",
+    "reset": "Reset",
+    "close": "Close",
+    "loading": "Loading...",
+    "success": "Success",
+    "error": "Error",
+    "warning": "Warning",
+    "info": "Info"
+  },
+  "header": {
+    "language": "Language",
+    "theme": "Theme",
+    "settings": "Settings"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "enUS": "English",
+    "jaJP": "日本語",
+    "koKR": "한국어"
+  },
+  "theme": {
+    "primaryColor": "Primary Color",
+    "customColor": "Custom Color",
+    "presetColors": "Preset Colors",
+    "resetTheme": "Reset Theme"
+  },
+  "home": {
+    "title": "QR Code Generator",
+    "description": "Enter text, generate QR code, scan with phone to view",
+    "step1": "Enter Text Content",
+    "step2": "Set Network Information",
+    "step3": "Generate QR Code",
+    "inputPlaceholder": "Please enter text content for QR code",
+    "generateButton": "Generate QR Code",
+    "generating": "Generating...",
+    "generateSuccess": "QR code generated successfully! Please scan with your phone",
+    "generateFailed": "QR code generation failed, please check input or try reducing text length",
+    "inputEmptyWarning": "Please enter text content first",
+    "ipEmptyWarning": "Please enter your local area network IP in the network info card below",
+    "lengthWarning": "Text content is too long (encoded {length} characters), QR code may be difficult to scan, it is recommended to simplify the text",
+    "previewTitle": "QR Code Preview",
+    "scanTip": "Please use your phone to scan the QR code to view content",
+    "urlDisplay": "Generated URL",
+    "exampleNotice": "Announcement",
+    "exampleNoticeText": "[Important Notice]\n\nDear Colleagues:\n\nThe company will hold the annual summary meeting at 14:00 on Tuesday, February 10, 2026, in the 3rd floor conference room. All department heads are requested to attend on time.\n\nPlease prepare the department's annual work summary and new year plan in advance.\n\n—— Administration Department",
+    "exampleProduct": "Product Introduction",
+    "exampleProductText": "[Smart Home Control Center Pro]\n\nA revolutionary smart home product:\n\n✅ Voice control for all home devices\n✅ AI intelligent scene recommendation\n✅ Compatible with 1000+ brand devices\n✅ Remote mobile APP control\n\nPrice: $99\nWebsite: www.example.com",
+    "exampleInvitation": "Event Invitation",
+    "exampleInvitationText": "🎉 Invitation\n\nYou are invited to attend the \"2026 Spring Technology Sharing Conference\"\n\n📅 Date: March 15, 2026 09:00-17:00\n📍 Location: Tech Park Building A Lecture Hall\n🎯 Theme: Frontend Engineering and AI-Assisted Development\n\nAgenda Highlights:\n• Vue 3 Deep Practice Sharing\n• AI Copilot Efficiency Secrets\n• Micro-Frontend Architecture Implementation Experience\n\nLooking forward to your presence!"
+  },
+  "textInput": {
+    "title": "Enter Text Content",
+    "subtitle": "Please enter the text content to generate QR code below, scan with phone to view on web",
+    "placeholder": "Please enter text content to display, e.g., announcements, product introductions, event information, etc...",
+    "wordCount": "{current} / {max}",
+    "generateButton": "Generate QR Code",
+    "generating": "Generating...",
+    "clearButton": "Clear Content",
+    "quickExamples": "Quick Examples:"
+  },
+  "qrPreview": {
+    "title": "QR Code Preview",
+    "emptyHint": "Enter text and click \"Generate QR Code\"",
+    "emptySubtext": "Scan QR code with phone to view text on web",
+    "scanHint": "Please scan with phone",
+    "successMessage": "QR code generated, please ensure phone and computer are on the same network",
+    "downloadButton": "Download QR Code",
+    "copyButton": "Copy Link",
+    "downloadSuccess": "QR code image download started",
+    "copySuccess": "Link copied to clipboard"
+  },
+  "network": {
+    "title": "Network Access Information",
+    "subtitle": "The following is the network configuration information for mobile access to local services",
+    "step1": "Same WiFi",
+    "step2": "Generate QR Code",
+    "step3": "Scan with Phone",
+    "ipLabel": "LAN IP",
+    "ipNotSet": "Not Set",
+    "ipPlaceholder": "Please enter local LAN IP, e.g., 192.168.1.100 (check with ipconfig / ifconfig)",
+    "applyButton": "Apply",
+    "portLabel": "Service Port",
+    "addressLabel": "Access Address",
+    "invalidIpWarning": "Please enter a valid IPv4 address",
+    "ipApplied": "Switched to manual IP: {ip}",
+    "tipsTitle": "Solutions for phone unable to access local service",
+    "tip1": "Ensure same network: Phone and computer must be connected to the same WiFi / LAN",
+    "tip2": "Disable firewall: Windows firewall may block LAN access, please temporarily disable or add port forwarding rule",
+    "tip3": "Use LAN IP: Phone cannot access localhost, enter local LAN IP in the input box above (check with ipconfig / ifconfig command)",
+    "tip4": "Check port: Confirm service is running on port {port} and not occupied"
+  },
+  "display": {
+    "title": "Content Display",
+    "contentLabel": "Display Content",
+    "backHome": "Back to Home"
+  }
+}

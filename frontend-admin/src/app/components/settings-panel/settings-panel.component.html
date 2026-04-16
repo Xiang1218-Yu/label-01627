@@ -1,0 +1,77 @@
+<div class="settings-panel">
+  <div class="panel-header">
+    <h3>{{ getTranslation('header.settings') }}</h3>
+    <button nz-button nzType="text" (click)="close()">
+      <i nz-icon nzType="close"></i>
+    </button>
+  </div>
+
+  <div class="panel-content">
+    <div class="settings-section">
+      <h4 class="section-title">
+        <i nz-icon nzType="global"></i>
+        {{ getTranslation('header.language') }}
+      </h4>
+      <div class="language-options">
+        <button
+          *ngFor="let lang of availableLanguages"
+          nz-button
+          [nzType]="currentLanguage === lang.key ? 'primary' : 'default'"
+          (click)="onLanguageChange(lang.key)"
+          class="language-btn"
+        >
+          {{ lang.name }}
+        </button>
+      </div>
+    </div>
+
+    <nz-divider></nz-divider>
+
+    <div class="settings-section">
+      <h4 class="section-title">
+        <i nz-icon nzType="bg-colors"></i>
+        {{ getTranslation('header.theme') }}
+      </h4>
+
+      <div class="theme-settings">
+        <div class="color-section">
+          <label class="color-label">{{ getTranslation('theme.presetColors') }}</label>
+          <div class="color-preset-grid">
+            <div
+              *ngFor="let color of presetColors"
+              class="color-option"
+              [class.selected]="selectedColor === color"
+              [style.backgroundColor]="color"
+              (click)="onColorSelect(color)"
+            >
+              <i *ngIf="selectedColor === color" nz-icon nzType="check"></i>
+            </div>
+          </div>
+        </div>
+
+        <div class="color-section">
+          <label class="color-label">{{ getTranslation('theme.customColor') }}</label>
+          <div class="color-picker-wrapper">
+            <input
+              type="color"
+              [(ngModel)]="customColor"
+              (change)="onCustomColorChange(customColor)"
+              class="color-picker"
+            />
+            <span class="color-value">{{ customColor }}</span>
+          </div>
+        </div>
+
+        <button
+          nz-button
+          nzType="default"
+          (click)="onResetTheme()"
+          class="reset-btn"
+        >
+          <i nz-icon nzType="reload"></i>
+          {{ getTranslation('theme.resetTheme') }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

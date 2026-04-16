@@ -1,10 +1,10 @@
 <div class="app-card text-input-card">
   <div class="app-card__title">
     <i nz-icon nzType="edit" nzTheme="outline"></i>
-    <span>输入文字内容</span>
+    <span>{{ getTranslation('textInput.title') }}</span>
   </div>
   <p class="app-card__subtitle">
-    请在下方输入要生成二维码的文字内容，手机扫码后即可在网页中查看
+    {{ getTranslation('textInput.subtitle') }}
   </p>
 
   <nz-input-group class="text-input-card__textarea">
@@ -13,11 +13,11 @@
       [nzAutosize]="{ minRows: 6, maxRows: 12 }"
       [ngModel]="text"
       (ngModelChange)="onInput($event)"
-      placeholder="请输入要展示的文字内容，例如：公告通知、产品介绍、活动信息等..."
+      [placeholder]="getTranslation('textInput.placeholder')"
       maxlength="1000"
     ></textarea>
   </nz-input-group>
-  <div class="word-count">{{ text.length }} / 1000</div>
+  <div class="word-count">{{ getTranslation('textInput.wordCount', { current: text.length, max: 1000 }) }}</div>
 
   <div class="text-input-card__actions">
     <button
@@ -29,7 +29,7 @@
       (click)="onGenerate()"
     >
       <i *ngIf="!loading" nz-icon nzType="send" nzTheme="outline"></i>
-      {{ loading ? '生成中...' : '生成二维码' }}
+      {{ loading ? getTranslation('textInput.generating') : getTranslation('textInput.generateButton') }}
     </button>
 
     <button
@@ -39,13 +39,13 @@
       (click)="onClear()"
     >
       <i nz-icon nzType="delete" nzTheme="outline"></i>
-      清空内容
+      {{ getTranslation('textInput.clearButton') }}
     </button>
   </div>
 
   <!-- 快捷示例 -->
   <div class="text-input-card__examples">
-    <span class="examples-label">快捷示例：</span>
+    <span class="examples-label">{{ getTranslation('textInput.quickExamples') }}</span>
     <nz-tag
       *ngFor="let example of examples"
       class="example-tag"

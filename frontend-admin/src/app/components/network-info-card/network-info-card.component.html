@@ -1,17 +1,17 @@
 <div class="app-card network-info-card">
   <div class="app-card__title">
     <i nz-icon nzType="desktop" nzTheme="outline"></i>
-    <span>网络访问信息</span>
+    <span>{{ getTranslation('network.title') }}</span>
   </div>
   <p class="app-card__subtitle">
-    以下为手机端访问本地服务所需的网络配置信息
+    {{ getTranslation('network.subtitle') }}
   </p>
 
   <!-- 连接步骤指引 -->
   <nz-steps [nzCurrent]="3" nzSize="small" class="network-info-card__steps">
-    <nz-step nzTitle="同一WiFi" nzIcon="wifi"></nz-step>
-    <nz-step nzTitle="生成二维码" nzIcon="qrcode"></nz-step>
-    <nz-step nzTitle="手机扫码" nzIcon="mobile"></nz-step>
+    <nz-step [nzTitle]="getTranslation('network.step1')" nzIcon="wifi"></nz-step>
+    <nz-step [nzTitle]="getTranslation('network.step2')" nzIcon="qrcode"></nz-step>
+    <nz-step [nzTitle]="getTranslation('network.step3')" nzIcon="mobile"></nz-step>
   </nz-steps>
 
   <!-- 网络信息列表 -->
@@ -19,11 +19,11 @@
     <div class="info-item">
       <div class="info-item__label">
         <i nz-icon nzType="api" nzTheme="outline"></i>
-        局域网 IP
+        {{ getTranslation('network.ipLabel') }}
       </div>
       <div class="info-item__value">
         <nz-tag *ngIf="localIP" nzColor="success">{{ localIP }}</nz-tag>
-        <nz-tag *ngIf="!localIP" nzColor="warning">未设置</nz-tag>
+        <nz-tag *ngIf="!localIP" nzColor="warning">{{ getTranslation('network.ipNotSet') }}</nz-tag>
       </div>
     </div>
 
@@ -33,13 +33,13 @@
         <input
           nz-input
           [(ngModel)]="manualIP"
-          placeholder="请输入本机局域网 IP，如 192.168.1.100（通过 ipconfig / ifconfig 查看）"
+          [placeholder]="getTranslation('network.ipPlaceholder')"
           (keyup.enter)="applyManualIP()"
         />
       </nz-input-group>
       <ng-template #suffixButton>
         <button nz-button nzType="default" nzSearch [disabled]="!manualIP.trim()" (click)="applyManualIP()">
-          应用
+          {{ getTranslation('network.applyButton') }}
         </button>
       </ng-template>
     </div>
@@ -47,7 +47,7 @@
     <div class="info-item">
       <div class="info-item__label">
         <i nz-icon nzType="link" nzTheme="outline"></i>
-        服务端口
+        {{ getTranslation('network.portLabel') }}
       </div>
       <div class="info-item__value">
         <nz-tag nzColor="blue">{{ port }}</nz-tag>
@@ -57,7 +57,7 @@
     <div class="info-item">
       <div class="info-item__label">
         <i nz-icon nzType="global" nzTheme="outline"></i>
-        访问地址
+        {{ getTranslation('network.addressLabel') }}
       </div>
       <div class="info-item__value address-value">
         <code class="address-code">http://{{ localIP }}:{{ port }}</code>
@@ -70,13 +70,13 @@
   <div class="network-info-card__tips">
     <h4>
       <i nz-icon nzType="info-circle" nzTheme="fill"></i>
-      解决手机无法访问本地服务的方法
+      {{ getTranslation('network.tipsTitle') }}
     </h4>
     <ol>
-      <li><strong>确保同一网络：</strong>手机和电脑需连接同一 WiFi / 局域网</li>
-      <li><strong>关闭防火墙：</strong>Windows 防火墙可能阻止局域网访问，请临时关闭或添加端口放行规则</li>
-      <li><strong>使用局域网 IP：</strong>手机不能访问 <code>localhost</code>，需在上方输入框中填写本机局域网 IP（通过 <code>ipconfig</code> / <code>ifconfig</code> 命令查看）</li>
-      <li><strong>检查端口：</strong>确认服务运行在端口 {{ port }} 上且未被占用</li>
+      <li>{{ getTranslation('network.tip1') }}</li>
+      <li>{{ getTranslation('network.tip2') }}</li>
+      <li>{{ getTranslation('network.tip3') }}</li>
+      <li>{{ getTranslation('network.tip4', { port }) }}</li>
     </ol>
   </div>
 </div>

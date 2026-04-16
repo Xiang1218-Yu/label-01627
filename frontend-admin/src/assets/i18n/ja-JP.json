@@ -1,0 +1,101 @@
+{
+  "common": {
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "save": "保存",
+    "reset": "リセット",
+    "close": "閉じる",
+    "loading": "読み込み中...",
+    "success": "成功",
+    "error": "エラー",
+    "warning": "警告",
+    "info": "情報"
+  },
+  "header": {
+    "language": "言語",
+    "theme": "テーマ",
+    "settings": "設定"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "enUS": "English",
+    "jaJP": "日本語",
+    "koKR": "한국어"
+  },
+  "theme": {
+    "primaryColor": "プライマリカラー",
+    "customColor": "カスタムカラー",
+    "presetColors": "プリセットカラー",
+    "resetTheme": "テーマをリセット"
+  },
+  "home": {
+    "title": "QRコードジェネレーター",
+    "description": "テキストを入力し、QRコードを生成し、携帯電話でスキャンして表示",
+    "step1": "テキスト内容を入力",
+    "step2": "ネットワーク情報を設定",
+    "step3": "QRコードを生成",
+    "inputPlaceholder": "QRコードを生成するテキストを入力してください",
+    "generateButton": "QRコードを生成",
+    "generating": "生成中...",
+    "generateSuccess": "QRコードが正常に生成されました！携帯電話でスキャンしてください",
+    "generateFailed": "QRコードの生成に失敗しました。入力内容を確認するか、テキストの長さを短くしてください",
+    "inputEmptyWarning": "最初にテキスト内容を入力してください",
+    "ipEmptyWarning": "下のネットワーク情報カードにローカルエリアネットワークIPを入力してください",
+    "lengthWarning": "テキスト内容が長すぎます（エンコード後 {length} 文字）。QRコードがスキャンしにくくなる可能性がありますので、テキストを簡素化することを推奨します",
+    "previewTitle": "QRコードプレビュー",
+    "scanTip": "携帯電話でQRコードをスキャンして内容を表示してください",
+    "urlDisplay": "生成されたURL",
+    "exampleNotice": "お知らせ",
+    "exampleNoticeText": "【重要なお知らせ】\n\n皆様へ：\n\n2026年2月10日（火曜日）14:00に3階会議室で年次総会を開催します。各部門責任者は時間通りに参加してください。\n\n事前に部門の年次業務報告と新年の計画を準備してください。\n\n—— 総務部",
+    "exampleProduct": "製品紹介",
+    "exampleProductText": "【スマートホームコントロールセンター Pro】\n\n革命的なスマートホーム製品：\n\n✅ 家中のデバイスを音声制御\n✅ AI インテリジェントシーン推奨\n✅ 1000+ ブランドデバイスと互換性\n✅ リモートモバイルAPP制御\n\n価格：¥9,980\nウェブサイト：www.example.com",
+    "exampleInvitation": "イベント招待",
+    "exampleInvitationText": "🎉 ご招待状\n\n「2026春テクノロジー共有会」へのご参加を心よりお待ちしております\n\n📅 日時：2026年3月15日 09:00-17:00\n📍 場所：テックパークA棟講堂\n🎯 テーマ：フロントエンドエンジニアリングとAI支援開発\n\nアジェンダハイライト：\n• Vue 3 ディーププラクティス共有\n• AI Copilot 効率化の秘訣\n• マイクロフロントエンドアーキテクチャ実装経験\n\nご参加をお待ちしております！"
+  },
+  "textInput": {
+    "title": "テキスト内容を入力",
+    "subtitle": "以下にQRコードを生成するテキストを入力してください。携帯電話でスキャンするとウェブで表示できます",
+    "placeholder": "表示するテキスト内容を入力してください。例：お知らせ、製品紹介、イベント情報など...",
+    "wordCount": "{current} / {max}",
+    "generateButton": "QRコードを生成",
+    "generating": "生成中...",
+    "clearButton": "内容をクリア",
+    "quickExamples": "クイック例："
+  },
+  "qrPreview": {
+    "title": "QRコードプレビュー",
+    "emptyHint": "テキストを入力して「QRコードを生成」をクリック",
+    "emptySubtext": "携帯電話でQRコードをスキャンするとウェブでテキストを表示できます",
+    "scanHint": "携帯電話でスキャンしてください",
+    "successMessage": "QRコードが生成されました。携帯電話とコンピューターが同じネットワークに接続されていることを確認してください",
+    "downloadButton": "QRコードをダウンロード",
+    "copyButton": "リンクをコピー",
+    "downloadSuccess": "QRコード画像のダウンロードを開始しました",
+    "copySuccess": "リンクをクリップボードにコピーしました"
+  },
+  "network": {
+    "title": "ネットワークアクセス情報",
+    "subtitle": "以下はモバイルからローカルサービスにアクセスするためのネットワーク設定情報です",
+    "step1": "同じWiFi",
+    "step2": "QRコードを生成",
+    "step3": "携帯電話でスキャン",
+    "ipLabel": "LAN IP",
+    "ipNotSet": "未設定",
+    "ipPlaceholder": "ローカルLAN IPを入力してください。例：192.168.1.100（ipconfig / ifconfigで確認）",
+    "applyButton": "適用",
+    "portLabel": "サービスポート",
+    "addressLabel": "アクセスアドレス",
+    "invalidIpWarning": "有効なIPv4アドレスを入力してください",
+    "ipApplied": "手動IPに切り替えました：{ip}",
+    "tipsTitle": "携帯電話からローカルサービスにアクセスできない場合の解決方法",
+    "tip1": "同じネットワークを確認：携帯電話とコンピューターは同じWiFi / LANに接続する必要があります",
+    "tip2": "ファイアウォールを無効化：WindowsファイアウォールがLANアクセスをブロックする可能性があります。一時的に無効にするか、ポートフォワーディングルールを追加してください",
+    "tip3": "LAN IPを使用：携帯電話はlocalhostにアクセスできません。上の入力ボックスにローカルLAN IPを入力してください（ipconfig / ifconfigコマンドで確認）",
+    "tip4": "ポートを確認：サービスがポート {port} で実行されており、占有されていないことを確認してください"
+  },
+  "display": {
+    "title": "コンテンツ表示",
+    "contentLabel": "表示内容",
+    "backHome": "ホームに戻る"
+  }
+}

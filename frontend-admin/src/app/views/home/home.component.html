@@ -1,44 +1,41 @@
 <div class="home-view">
-  <!-- 页面头部 -->
   <header class="page-header">
-    <h1 class="page-header__title">二维码生成器</h1>
-    <p class="page-header__desc">输入文字 → 生成二维码 → 手机扫码查看内容</p>
+    <h1 class="page-header__title">{{ getTranslation('home.title') }}</h1>
+    <p class="page-header__desc">{{ getTranslation('home.step1') }} → {{ getTranslation('home.step3') }} → {{ getTranslation('home.scanTip') }}</p>
   </header>
 
-  <!-- 主内容区 -->
   <main class="home-view__content container">
     <nz-row [nzGutter]="24">
-      <!-- 左侧：文字输入 -->
       <nz-col [nzXs]="24" [nzSm]="24" [nzMd]="14" [nzLg]="14">
         <app-text-input-card
           [text]="inputText"
           [loading]="generating"
+          [i18nService]="i18nService"
           (textChange)="inputText = $event"
           (generate)="generateQrCode()"
         ></app-text-input-card>
       </nz-col>
 
-      <!-- 右侧：二维码预览 -->
       <nz-col [nzXs]="24" [nzSm]="24" [nzMd]="10" [nzLg]="10">
         <app-qr-preview-card
           [qrDataUrl]="qrDataUrl"
           [displayUrl]="displayUrl"
+          [i18nService]="i18nService"
         ></app-qr-preview-card>
       </nz-col>
     </nz-row>
 
-    <!-- 底部：网络信息 -->
     <div class="home-view__network">
       <app-network-info-card
         [localIP]="localIP"
         [port]="serverPort"
+        [i18nService]="i18nService"
         (localIPChange)="handleIPUpdate($event)"
       ></app-network-info-card>
     </div>
   </main>
 
-  <!-- 页脚 -->
   <footer class="home-view__footer">
-    <p>QR Code Generator &copy; 2026 — 纯前端实现，无需后端服务</p>
+    <p>QR Code Generator &copy; 2026</p>
   </footer>
 </div>

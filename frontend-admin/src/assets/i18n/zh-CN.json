@@ -1,0 +1,101 @@
+{
+  "common": {
+    "confirm": "确认",
+    "cancel": "取消",
+    "save": "保存",
+    "reset": "重置",
+    "close": "关闭",
+    "loading": "加载中...",
+    "success": "成功",
+    "error": "错误",
+    "warning": "警告",
+    "info": "提示"
+  },
+  "header": {
+    "language": "语言",
+    "theme": "主题",
+    "settings": "设置"
+  },
+  "language": {
+    "zhCN": "简体中文",
+    "enUS": "English",
+    "jaJP": "日本語",
+    "koKR": "한국어"
+  },
+  "theme": {
+    "primaryColor": "主色调",
+    "customColor": "自定义颜色",
+    "presetColors": "预设颜色",
+    "resetTheme": "重置主题"
+  },
+  "home": {
+    "title": "二维码生成器",
+    "description": "输入文字，生成二维码，手机扫码即可查看",
+    "step1": "输入文字内容",
+    "step2": "设置网络信息",
+    "step3": "生成二维码",
+    "inputPlaceholder": "请输入要生成二维码的文字内容",
+    "generateButton": "生成二维码",
+    "generating": "正在生成...",
+    "generateSuccess": "二维码生成成功！请用手机扫描",
+    "generateFailed": "二维码生成失败，请检查输入内容或尝试减少文字量",
+    "inputEmptyWarning": "请先输入文字内容",
+    "ipEmptyWarning": "请先在下方网络信息卡片中输入本机局域网 IP",
+    "lengthWarning": "文字内容过长（编码后 {length} 字符），二维码可能难以扫描，建议精简文字",
+    "previewTitle": "二维码预览",
+    "scanTip": "请使用手机扫描二维码查看内容",
+    "urlDisplay": "生成的链接地址",
+    "exampleNotice": "公告通知",
+    "exampleNoticeText": "【重要通知】\n\n尊敬的各位同事：\n\n公司将于2026年2月10日（周二）下午14:00在三楼会议室召开年度总结大会，请各部门负责人准时参加。\n\n请提前准备好部门年度工作总结和新年度计划。\n\n—— 行政部",
+    "exampleProduct": "产品介绍",
+    "exampleProductText": "【智能家居控制中心 Pro】\n\n一款革命性的智能家居产品：\n\n✅ 支持语音控制全屋设备\n✅ AI 智能场景推荐\n✅ 兼容 1000+ 品牌设备\n✅ 远程手机 APP 操控\n\n售价：¥599\n官网：www.example.com",
+    "exampleInvitation": "活动邀请",
+    "exampleInvitationText": "🎉 邀请函\n\n诚邀您参加「2026春季技术分享会」\n\n📅 时间：2026年3月15日 09:00-17:00\n📍 地点：科技园区 A 座报告厅\n🎯 主题：前端工程化与AI辅助开发\n\n议程亮点：\n• Vue 3 深度实践分享\n• AI Copilot 提效秘籍\n• 微前端架构落地经验\n\n期待您的到来！"
+  },
+  "textInput": {
+    "title": "输入文字内容",
+    "subtitle": "请在下方输入要生成二维码的文字内容，手机扫码后即可在网页中查看",
+    "placeholder": "请输入要展示的文字内容，例如：公告通知、产品介绍、活动信息等...",
+    "wordCount": "{current} / {max}",
+    "generateButton": "生成二维码",
+    "generating": "生成中...",
+    "clearButton": "清空内容",
+    "quickExamples": "快捷示例："
+  },
+  "qrPreview": {
+    "title": "二维码预览",
+    "emptyHint": "输入文字并点击\"生成二维码\"",
+    "emptySubtext": "手机扫描二维码即可在网页中查看文字",
+    "scanHint": "请用手机扫描",
+    "successMessage": "二维码已生成，请确保手机与电脑在同一局域网下",
+    "downloadButton": "下载二维码",
+    "copyButton": "复制链接",
+    "downloadSuccess": "二维码图片已开始下载",
+    "copySuccess": "链接已复制到剪贴板"
+  },
+  "network": {
+    "title": "网络访问信息",
+    "subtitle": "以下为手机端访问本地服务所需的网络配置信息",
+    "step1": "同一WiFi",
+    "step2": "生成二维码",
+    "step3": "手机扫码",
+    "ipLabel": "局域网 IP",
+    "ipNotSet": "未设置",
+    "ipPlaceholder": "请输入本机局域网 IP，如 192.168.1.100（通过 ipconfig / ifconfig 查看）",
+    "applyButton": "应用",
+    "portLabel": "服务端口",
+    "addressLabel": "访问地址",
+    "invalidIpWarning": "请输入有效的 IPv4 地址",
+    "ipApplied": "已切换为手动 IP: {ip}",
+    "tipsTitle": "解决手机无法访问本地服务的方法",
+    "tip1": "确保同一网络：手机和电脑需连接同一 WiFi / 局域网",
+    "tip2": "关闭防火墙：Windows 防火墙可能阻止局域网访问，请临时关闭或添加端口放行规则",
+    "tip3": "使用局域网 IP：手机不能访问 localhost，需在上方输入框中填写本机局域网 IP（通过 ipconfig / ifconfig 命令查看）",
+    "tip4": "检查端口：确认服务运行在端口 {port} 上且未被占用"
+  },
+  "display": {
+    "title": "内容展示",
+    "contentLabel": "展示内容",
+    "backHome": "返回首页"
+  }
+}

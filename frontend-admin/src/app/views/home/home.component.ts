@@ -1,14 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import * as QRCode from 'qrcode';
+import { Subscription } from 'rxjs';
 import { buildDisplayUrl, getEncodedUrlLength, QR_MAX_RECOMMENDED_LENGTH } from '../../utils/network';
+import { I18nService } from '../../services/i18n.service';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit {
+export class HomeComponent implements OnInit, OnDestroy {
   inputText = '';
   qrDataUrl = '';
   displayUrl = '';
@@ -16,7 +18,18 @@ export class HomeComponent implements OnInit {
   localIP = '';
   serverPort = 8081;
 
-  constructor(private message: NzMessageService) {}
+  private languageSubscription: Subscription;
+
+  constructor(
+    private message: NzMessageService,
+    public i18nService: I18nService
+  ) {
+    this.languageSubscription = this.i18nService.currentLanguage$.subscribe(() => {
+      if (this.qrDataUrl && this.inputText.trim()) {
+        this.message.success(this.i18nService.instant('home.generateSuccess'));
+      }
+    });
+  }
 
   ngOnInit(): void {
     const currentPort = window.location.port;
@@ -25,21 +38,28 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  ngOnDestroy(): void {
+    if (this.languageSubscription) {
+      this.languageSubscription.unsubscribe();
+    }
+  }
+
   async generateQrCode(): Promise<void> {
     const text = this.inputText.trim();
     if (!text) {
-      this.message.warning('请先输入文字内容');
+      this.message.warning(this.i18nService.instant('home.inputEmptyWarning'));
       return;
     }
 
     if (!this.localIP) {
-      this.message.warning('请先在下方网络信息卡片中输入本机局域网 IP');
+      this.message.warning(this.i18nService.instant('home.ipEmptyWarning'));
       return;
     }
 
     const urlLength = getEncodedUrlLength(this.localIP, this.serverPort, text);
     if (urlLength > QR_MAX_RECOMMENDED_LENGTH) {
-      this.message.warning(`文字内容过长（编码后 ${urlLength} 字符），二维码可能难以扫描，建议精简文字`);
+      const warningMsg = this.i18nService.instant('home.lengthWarning', { length: urlLength });
+      this.message.warning(warningMsg);
       console.warn(`[QR] URL 长度 ${urlLength} 超过推荐上限 ${QR_MAX_RECOMMENDED_LENGTH}`);
     }
 
@@ -61,10 +81,10 @@ export class HomeComponent implements OnInit {
       });
 
       this.qrDataUrl = dataUrl;
-      this.message.success('二维码生成成功！请用手机扫描');
+      this.message.success(this.i18nService.instant('home.generateSuccess'));
     } catch (err) {
       console.error('[QR] 二维码生成失败:', err);
-      this.message.error('二维码生成失败，请检查输入内容或尝试减少文字量');
+      this.message.error(this.i18nService.instant('home.generateFailed'));
     } finally {
       this.generating = false;
     }
@@ -75,5 +95,9 @@ export class HomeComponent implements OnInit {
     if (this.qrDataUrl && this.inputText.trim()) {
       this.generateQrCode();
     }
+  }
+
+  getTranslation(key: string, params?: any): string {
+    return this.i18nService.instant(key, params);
   }
 }
