@@ -1,0 +1,56 @@
+<div class="settings-container">
+  <div class="settings-section">
+    <h3 class="section-title">{{ '语言设置' }}</h3>
+    <nz-radio-group [(ngModel)]="selectedLanguage" (ngModelChange)="onLanguageChange($event)">
+      <label nz-radio *ngFor="let option of languageOptions" [nzValue]="option.value">
+        {{ option.label }}
+      </label>
+    </nz-radio-group>
+  </div>
+
+  <div class="settings-section">
+    <h3 class="section-title">{{ '主题颜色设置' }}</h3>
+    <div class="color-preset-container">
+      <div 
+        *ngFor="let color of presetColors" 
+        class="color-item"
+        [class.active]="selectedColor === color.value"
+        (click)="onColorChange(color.value)"
+        [style.backgroundColor]="color.value"
+        nz-tooltip
+        [nzTitle]="color.label"
+      >
+        <i *ngIf="selectedColor === color.value" class="anticon anticon-check"></i>
+      </div>
+    </div>
+
+    <div class="custom-color-container">
+      <label>{{ '自定义颜色' }}</label>
+      <div class="color-input-wrapper">
+        <input 
+          type="color" 
+          [(ngModel)]="selectedColor" 
+          (change)="onCustomColorChange()"
+          class="color-picker"
+        >
+        <input 
+          type="text" 
+          [(ngModel)]="selectedColor" 
+          (blur)="onCustomColorChange()"
+          class="color-input"
+          placeholder="#1890ff"
+        >
+      </div>
+    </div>
+
+    <button nz-button (click)="onResetTheme()" style="margin-top: 16px;">
+      {{ '恢复默认主题' }}
+    </button>
+  </div>
+
+  <div class="settings-footer">
+    <button nz-button nzType="primary" (click)="onClose()">
+      {{ '确定' }}
+    </button>
+  </div>
+</div>

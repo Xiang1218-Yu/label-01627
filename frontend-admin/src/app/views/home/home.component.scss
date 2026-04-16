@@ -42,3 +42,21 @@
     background: var(--bg-card);
   }
 }
+
+.page-header {
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: var(--container-max-width);
+    margin: 0 auto;
+    padding: 0 var(--spacing-md);
+  }
+
+  .settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+}
+
